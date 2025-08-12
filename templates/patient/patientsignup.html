@@ -1,0 +1,244 @@
+{%load static%}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+      
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css">
+ 
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Main CSS-->
+
+    <link href="{% static "css/main.css" %}"rel="stylesheet" media="all">
+    <style>
+       
+        /* Transparent background image setup */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background: url("{% static "image\pbg.jpg" %}") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Remove any predefined background color from the wrapper */
+        .page-wrapper {
+            background: transparent !important;
+            padding-top: 45px;
+            padding-bottom: 50px;
+        }
+
+        /* Optional: Add transparency to the card if desired */
+        .card-5 {
+            background: rgba(255, 255, 255, 0.9); /* white with some transparency */
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .card-heading {
+            background: transparent;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .title {
+            color: #333;
+            font-weight: 700;
+        }
+    </style>
+
+ 
+  </head>
+  <body>
+    {% include "blood/navbar.html" %}
+
+
+
+
+   <div class="page-wrapper p-t-45 p-b-50" 
+     style="background: url('/static/images/bg.jpg') no-repeat center center fixed;
+            background-size: cover;">
+
+    <div class="wrapper wrapper--w790">
+        <br><br><br>
+
+        <div class="card card-5" 
+             style="background-color: rgba(255, 255, 255, 0.15); 
+                    backdrop-filter: blur(12px); 
+                    -webkit-backdrop-filter: blur(12px); 
+                    border-radius: 15px; 
+                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); 
+                    border: 1px solid rgba(255, 255, 255, 0.3);">
+
+            <div class="card-heading" 
+                 style="background-color: rgba(0, 0, 0, 0.4); 
+                        color: white; 
+                        padding: 20px; 
+                        border-top-left-radius: 15px; 
+                        border-top-right-radius: 15px;">
+                <h2 class="title" style="margin: 0;">Patient Signup</h2>
+            </div>
+
+            <div class="card-body" style="color: #080004ff; padding: 30px;">
+                <form method="POST" autocomplete="off" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <!-- First Name -->
+                    <div class="form-row">
+                        <div class="name" style="color: #080004ff;">First Name</div>
+                        <div class="value">
+                            <div class="input-group">
+                                {% render_field userForm.first_name|attr:'required:true' class="input--style-5" %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="form-row">
+                        <div class="name" style="color: #080004ff;">Last Name</div>
+                        <div class="value">
+                            <div class="input-group">
+                                {% render_field userForm.last_name|attr:'required:true' class="input--style-5" %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Username -->
+                    <div class="form-row">
+                        <div class="name" style="color: #080004ff;">Username</div>
+                        <div class="value">
+                            <div class="input-group">
+                                {% render_field userForm.username|attr:'required:true' class="input--style-5" %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-row">
+                        <div class="name" style="color: #080004ff;">Password</div>
+                        <div class="value">
+                            <div class="input-group">
+                                {% render_field userForm.password|attr:'required:true' class="input--style-5" %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Age -->
+                    <div class="form-row">
+                        <div class="name" style="color: #080004ff;">Age</div>
+                        <div class="value">
+                            <div class="input-group">
+                                {% render_field patientForm.age|attr:'required:true' class="input--style-5" %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blood Group -->
+                    <div class="form-row">
+                        <div class="name" style="color: #080004ff;">Blood Group</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <div class="rs-select2 js-select-simple select--no-search">
+                                    <select name="bloodgroup" required>
+                                        <option disabled="disabled" selected="selected">Choose option</option>
+                                        <option>O+</option>
+                                        <option>O-</option>
+                                        <option>A+</option>
+                                        <option>A-</option>
+                                        <option>B+</option>
+                                        <option>B-</option>
+                                        <option>AB+</option>
+                                        <option>AB-</option>
+                                    </select>
+                                    <div class="select-dropdown"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Disease -->
+                    <div class="form-row">
+                        <div class="name" style="color: #080004ff;">Disease</div>
+                        <div class="value">
+                            <div class="input-group">
+                                {% render_field patientForm.disease|attr:'required:true' class="input--style-5" %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Doctor Name -->
+                    <div class="form-row">
+                        <div class="name" style="color: #080004ff;">Doctor Name</div>
+                        <div class="value">
+                            <div class="input-group">
+                                {% render_field patientForm.doctorname|attr:'required:true' class="input--style-5" %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="form-row">
+                        <div class="name" style="color: #080004ff;">Address</div>
+                        <div class="value">
+                            <div class="input-group">
+                                {% render_field patientForm.address|attr:'required:true' class="input--style-5" %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile -->
+                    <div class="form-row">
+                        <div class="name" style="color: #080004ff;">Mobile</div>
+                        <div class="value">
+                            <div class="input-group">
+                                {% render_field patientForm.mobile|attr:'required:true' class="input--style-5" %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Pic -->
+                    <div class="form-row">
+                        <div class="name" style="color: #080004ff;">Profile Pic</div>
+                        <div class="value">
+                            <div class="input-group">
+                                {% render_field patientForm.profile_pic|attr:'required:true' class="input--style-5" %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div style="text-align: right; margin-top: 20px;">
+                        <button class="btn btn--radius-2 btn-danger"
+                                type="submit"
+                                style="padding: 13px 80px; font-size: 20px;">
+                            Register
+                        </button>
+                    </div>
+                </form>
+
+                <br>
+                <p style="text-align: center; color: #ffffff;">
+                    Already have an account? 
+                    <a style="text-decoration: none; color: #ffff00;" href="/patient/patientlogin">
+                        Click here to login
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include "blood/footer.html" %}
+<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  </body>
+</html>
