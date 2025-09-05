@@ -24,6 +24,9 @@ https://code.visualstudio.com/download
 
 >pip install django-widget-tweaks
 
+### step 4 : Install all the Packages or Modules inside requirements.txt file
+>pip install -r requirements.txt
+
 ### step 5 : Now make Migrations and Migrate for saving the changes:
 >python manage.py migrate
 
@@ -95,5 +98,4 @@ http://127.0.0.1:8000/
 
 ***Ramakant Chaudhari***
 
-### step 4 : Install all the Packages or Modules inside requirements.txt file
->pip install -r requirements.txt
+
